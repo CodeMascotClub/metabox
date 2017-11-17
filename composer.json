@@ -1,0 +1,24 @@
+{
+	"name": "rnaby/metabox",
+	"description": "This is a Composer library package to make easier the process of creating metabox for WordPress.",
+	"minimum-stability": "dev",
+	"prefer-stable": true,
+	"license": "MIT",
+	"type": "library",
+	"authors": [
+		{
+			"name": "Khan M Rashedun-Naby",
+			"email": "naby88@gmail.com",
+			"role": "Developer"
+		}
+	],
+	"require": {
+	},
+	"require-dev": {
+	},
+	"autoload": {
+		"psr-4": {
+			"TheDramatist\\MetaBox\\": "src/"
+		}
+	}
+}
