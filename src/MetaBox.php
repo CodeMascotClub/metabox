@@ -73,7 +73,17 @@ class MetaBox {
 			$this->priority
 		);
 	}
-
+	
+	/**
+	 * Table headline method.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param $label
+	 * @param $text
+	 *
+	 * @return void
+	 */
 	protected function table_headline( $label, $text ) {
 		echo '<th><label for="'
 			 . esc_attr( $label )
