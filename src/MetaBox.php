@@ -50,7 +50,7 @@ class MetaBox {
 
 		add_action( 'add_meta_boxes', [ $this, 'add_meta_boxes' ] );
 		add_action( 'save_post', [ $this, 'save_metabox_data' ] );
-		add_filter( 'post_updated_messages', [ $this, 'generate_messages' ] );
+		add_filter( 'post_updated_messages', [ $this, 'messages' ] );
 	}
 
 	/**
@@ -66,14 +66,14 @@ class MetaBox {
 			$this->title,
 			[
 				$this,
-				'display_meta_boxes',
+				'render_meta_boxes',
 			],
 			$this->post_type,
 			$this->context,
 			$this->priority
 		);
 	}
-	
+
 	/**
 	 * Table headline method.
 	 *
@@ -92,7 +92,14 @@ class MetaBox {
 			 . '</label></th>';
 	}
 
-	public function display_meta_boxes() {
+	/**
+	 * Render metaboxes
+	 *
+	 * @since 1.0.0
+	 *
+	 * @return void
+	 */
+	public function render_meta_boxes() {
 
 		global $post;
 
@@ -265,15 +272,24 @@ class MetaBox {
 		ob_end_flush();
 	}
 	
-	public function generate_messages( $messages ) {
+	/**
+	 * Message generating method.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param $messages
+	 *
+	 * @return mixed
+	 */
+	public function messages( $messages ) {
 		$this->error_message = get_transient(
 			'product_error_message_$post->ID'
 		);
-		
+
 		$message_no = isset( $_GET['message'] )
 			? sanitize_text_field( $_GET['message'] )
 			: '0';
-		
+
 		delete_transient( 'product_error_message_{$post->ID}' );
 
 		if ( ! empty( $this->error_message ) ) {
@@ -284,7 +300,14 @@ class MetaBox {
 
 		return $messages;
 	}
-	
+
+	/**
+	 * Saving metabox data.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @return void
+	 */
 	public function save_metabox_data() {
 		global $post;
 		if (
