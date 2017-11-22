@@ -1,6 +1,6 @@
 <?php # -*- coding: utf-8 -*-
 
-namespace TheDramatist\MetaBox\MetaBox;
+namespace TheDramatist\MetaBox;
 
 /**
  * Class MetaBox
@@ -154,7 +154,6 @@ class MetaBox {
 
 				case 'select':
 					$this->table_headline( $item[1], $item[1] . $req );
-
 					echo '<td><select class="widefat" name="'
 						 . esc_attr( $item[0] )
 						 . '" id="'
@@ -162,9 +161,10 @@ class MetaBox {
 						 . '">';
 
 					foreach ( $item[4] as $option_key => $option_value ) {
-						$option_key === $value ?
-							$select = 'selected="selected"' :
-							$select = '';
+						$select = '';
+						if( $option_key == $value ) {
+							$select = 'selected="selected"';
+						}
 						echo '<option '
 							 . $select
 							 . ' value="'
@@ -179,9 +179,9 @@ class MetaBox {
 				case 'check':
 					$this->table_headline( $item[1], $item[1] . $req );
 					echo '<td>';
-
 					$value_array = explode( ',', $value );
 					foreach ( $item[4] as $option_key => $option_value ) {
+						$checked = '';
 						if (
 							in_array(
 								$option_key,
@@ -189,9 +189,7 @@ class MetaBox {
 								true
 							)
 						) {
-							$checked = 'checked="checked""';
-						} else {
-							$checked = '';
+							$checked = 'checked="checked"';
 						}
 
 						echo '<input class="selectit widefat" type="checkbox" '
@@ -213,12 +211,11 @@ class MetaBox {
 
 					$i = 0;
 					foreach ( $item[4] as $option_key => $option_value ) {
-						if ( $value === $option_key ) {
-							$checked = 'checked="checked""';
-						} else {
-							$checked = '';
+						$checked = '';
+						if ( $value == $option_key ) {
+							$checked = 'checked="checked"';
 						}
-						echo '<input  '
+						echo '<input '
 							 . $checked
 							 . ' type="radio" class="widefat" name="'
 							 . esc_attr( $item[0] ) .
@@ -271,7 +268,7 @@ class MetaBox {
 		echo '</table>';
 		ob_end_flush();
 	}
-	
+
 	/**
 	 * Message generating method.
 	 *
@@ -335,40 +332,28 @@ class MetaBox {
 				 * to validate or sanitize data
 				 * for custom data validation.
 				 */
-				$post_raw_data[] = apply_filters(
+				$post_raw_data = apply_filters(
 					'the_dramatist_metabox_api_data_filter',
 					$_POST[ $item[0] ], // The data
 					$item[0] // Data Field Token
 				);
 
-				if( is_array( $item[5] ) ) {
-					foreach ( $item[5] as $validation_parameter ) {
-						$post_raw_data[] = $validation_parameter;
-					}
-				} else {
-					$post_raw_data[] = $item[5];
-				}
-
-				if (
-					! empty( $item[4] ) ||
-					'' !== $item[4]
-				) {
-					$post_data = call_user_func_array(
-						$item[4],
-						(array) $post_raw_data
+				if ( is_array( $post_raw_data ) ) {
+					$post_data = implode(
+						',',
+						$post_raw_data
 					);
 				} else {
-					$post_data = (string) $post_raw_data;
+					$post_data = $post_raw_data;
 				}
 
 				if (
 					( empty( $post_data ) || '-' === $post_data ) &&
 					( false !== strpos( $item[3], 'required' ) )
 				) {
-					$this->error_message .= $item[1]
-											. __( ' cannot be empty' )
-											. '</br>';
+					$this->error_message .= $item[1] . __( ' cannot be empty' ) . '</br>';
 				}
+
 				$data[ $item[0] ] = $post_data;
 			}
 		}
@@ -379,20 +364,6 @@ class MetaBox {
 
 		foreach ( $data as $item_key => $item_value ) {
 			update_post_meta( $post->ID, $item_key, $item_value );
-		}
-
-		if ( ! empty( $this->error_message ) ) {
-			remove_action( 'save_post', [ $this, 'save_metabox_data' ] );
-			$post->post_status = 'draft';
-			wp_update_post( $post );
-			add_action( 'save_post', [ $this, 'save_metabox_data' ] );
-			$this->error_message = __( 'Saving failed.<br/>' )
-									. $this->error_message;
-			set_transient(
-				'product_error_message_$post->ID',
-				$this->error_message,
-				60 * 10
-			);
 		}
 	}
 }
