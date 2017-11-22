@@ -22,6 +22,16 @@ class MetaBox {
 	private $priority;
 	private $error_message;
 
+	/**
+	 * MetaBox constructor.
+	 *
+	 * @param        $id
+	 * @param string $title
+	 * @param        $post_type
+	 * @param        $metabox_config
+	 * @param string $context
+	 * @param string $priority
+	 */
 	public function __construct(
 		$id,
 		$title = 'Attributes',
@@ -43,6 +53,13 @@ class MetaBox {
 		add_filter( 'post_updated_messages', [ $this, 'generate_messages' ] );
 	}
 
+	/**
+	 * Initiating metaboxes.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @return void
+	 */
 	public function add_meta_boxes() {
 		add_meta_box(
 			$this->id,
