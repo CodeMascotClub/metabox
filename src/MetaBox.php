@@ -268,7 +268,7 @@ class MetaBox {
 		echo '</table>';
 		ob_end_flush();
 	}
-
+	
 	/**
 	 * Message generating method.
 	 *
@@ -315,17 +315,6 @@ class MetaBox {
 			$this->error_message = '';
 			$data                = [];
 			foreach ( $this->metabox_config as $item ) {
-
-				/**
-				if ( is_array( $_POST[ $item[0] ] ) ) {
-					$post_raw_data[] = implode(
-						',',
-						$_POST[ $item[0] ]
-					);
-				} else {
-					$post_raw_data[] = $_POST[ $item[0] ];
-				}
-				*/
 
 				/**
 				 * Use `the_dramatist_metabox_api_data_filter`

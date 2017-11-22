@@ -1,7 +1,7 @@
 {
 	"name": "rnaby/metabox",
 	"description": "This is a Composer library package to make easier the process of creating metabox for WordPress.",
-	"minimum-stability": "dev",
+	"minimum-stability": "stable",
 	"prefer-stable": true,
 	"license": "MIT",
 	"type": "library",
