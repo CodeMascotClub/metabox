@@ -1,15 +1,15 @@
 <?php # -*- coding: utf-8 -*-
 
-namespace TheDramatist\MetaBox;
+namespace CodeMascot\MetaBox;
 
 /**
  * Class MetaBox
  *
- * @package TheDramatist\MetaBox\MetaBox
+ * @package CodeMascot\MetaBox\MetaBox
  *
- * @author K. M. Rashedun-Naby <naby88@gmail.com>
- * @link http://thedramatist.me
- * @since 1.0.0
+ * @author	Khan M Rashedun-Naby <naby88@gmail.com>
+ * @link	https://www.codemascot.com/
+ * @since	1.0.0
  * @version 1.0.0
  * @license MIT
  */
