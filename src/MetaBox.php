@@ -317,12 +317,12 @@ class MetaBox {
 			foreach ( $this->metabox_config as $item ) {
 
 				/**
-				 * Use `the_dramatist_metabox_api_data_filter`
+				 * Use `codemascot_metabox_api_data_filter`
 				 * to validate or sanitize data
 				 * for custom data validation.
 				 */
 				$post_raw_data = apply_filters(
-					'the_dramatist_metabox_api_data_filter',
+					'codemascot_metabox_api_data_filter',
 					$_POST[ $item[0] ], // The data
 					$item[0] // Data Field Token
 				);
