@@ -114,7 +114,7 @@ I'm Khan AKA CodeMascot a professional web developer and I crafted this package 
 
 ## License
 
-Copyright (c) 2017 Khan M Rashedun-Naby, CodeMascot
+Copyright (c) 2018 Khan M Rashedun-Naby, CodeMascot
 
 Good news, this library is free for everyone! Since it's released under the [MIT License](LICENSE) you can use it free of charge on your personal or commercial website.
 
