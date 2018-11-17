@@ -1,5 +1,5 @@
 {
-	"name": "rnaby/metabox",
+	"name": "codemascot/metabox",
 	"description": "This is a Composer library package to make easier the process of creating metabox for WordPress.",
 	"minimum-stability": "dev",
 	"prefer-stable": true,
@@ -18,7 +18,7 @@
 	},
 	"autoload": {
 		"psr-4": {
-			"TheDramatist\\MetaBox\\": "src/"
+			"CodeMascot\\MetaBox\\": "src/"
 		}
 	}
 }
