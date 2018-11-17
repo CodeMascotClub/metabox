@@ -1,6 +1,6 @@
-# TheDramatist MetaBox
+# CodeMascot MetaBox
 
-This is a Composer library package to enhance the usage of WordPress metabox API.
+This is a Composer library package to enhance the usage of **WordPress metabox API**.
 
 ## Table Of Contents
 
@@ -31,7 +31,7 @@ This is a Composer library package to enhance the usage of WordPress metabox API
 The best way to use this package is through Composer:
 
 ```BASH
-$ composer require rnaby/metabox
+$ composer require codemascot/metabox
 ```
 
 ## Usage
@@ -39,7 +39,7 @@ $ composer require rnaby/metabox
 ##### Step 1
 First we need to prepare the arguments like below-
 ```php
-$prefix = 'your-prefix';
+$prefix = 'codemascot_'; // Use any prefix you like to prefix the metabox name or id
 $metabox_args = [
     [
         $prefix . '-section-title',
@@ -79,7 +79,7 @@ $metabox_args = [
 ##### Step 2
 Now you need to call the `MetaBox` class like below-
 ```php
-new \TheDramatist\MetaBox\MetaBox(
+new \CodeMascot\MetaBox\MetaBox(
     'section-id', // Section DOM ID
     __( 'Section Name', 'text-domain' ), // Section Name
      'post', // Post Type
@@ -89,12 +89,12 @@ new \TheDramatist\MetaBox\MetaBox(
 );
 ```
 ##### Data Sanitization & Validation
-You can use `the_dramatist_metabox_api_data_filter` for sanitizing and validating input through this package. It has two arguments, one is `$data` and another is `$field_id`.
+You can use `codeamscot_metabox_api_data_filter` for sanitizing and validating input through this package. It has two arguments, one is `$data` and another is `$field_id`.
 
 ```php
 add_filter(
-    'the_dramatist_metabox_api_data_filter',
-    'the_dramatist_metabox_api_data_filter',
+    'codemascot_metabox_api_data_filter',
+    'codemascot_metabox_api_data_filter',
     10,
     2
 );
@@ -103,18 +103,18 @@ add_filter(
  * @param        $data
  * @param string $field_id
  */
-function the_dramatist_metabox_api_data_filter( $data, $field_id ) {
+function codemascot_metabox_api_data_filter( $data, $field_id ) {
     // Validate or Sanitize Data Here.
 }
 ```
 
 ## Crafted by Khan
 
-I'm a professional web developer and I crafted this package for my personal use. Feel free to use this for your projects too.
+I'm Khan AKA CodeMascot a professional web developer and I crafted this package for my personal use. Feel free to use this for your projects too.
 
 ## License
 
-Copyright (c) 2017 Khan M Rashedun-Naby, TheDramatist, rnaby
+Copyright (c) 2017 Khan M Rashedun-Naby, CodeMascot
 
 Good news, this library is free for everyone! Since it's released under the [MIT License](LICENSE) you can use it free of charge on your personal or commercial website.
 
